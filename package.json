@@ -32,7 +32,6 @@
     "karma-mocha": "^0.1.10",
     "karma-mocha-reporter": "^1.0.2",
     "karma-phantomjs-launcher": "^0.2.0",
-    "lodash.assign": "^3.2.0",
     "main-bower-files": "^2.5.0",
     "mocha": "^2.2.5",
     "opn": "^1.0.0",
@@ -40,12 +39,11 @@
     "rsyncwrapper": "^0.4.3",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
-    "watchify": "^3.2.1",
     "wiredep": "^2.0.0"
   },
   "dependencies": {
     "jquery": "^2.1.4",
     "lodash": "^3.9.3",
-    "p5": "^0.4.5"
+    "p5": "0.4.5"
   }
 }

@@ -138,6 +138,7 @@ gulp.task('tdd', function (done) {
 gulp.task('browserify', function(){
   return browserify({
       entries: ['./app/scripts/main.js'],
+      noParse: ['./node_modules/p5/lib/p5.min.js'],
       debug: true
     })
     .transform(babelify)
