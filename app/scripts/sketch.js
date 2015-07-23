@@ -25,14 +25,15 @@ function sketch(s) {
 
   s.draw = function() {
 
-    for (let i = 0, l = img.pixels.length; i < l - 8; i += 4) {
+    for (let i = 0, l = img.pixels.length; i + 4 < l; i += 4) {
 
       // set red pix to pix on right
-      img.pixels[i] = img.pixels[i+4];
+      let rightIdx = (i + 4) % img.pixels.length;
+      img.pixels[i] = img.pixels[rightIdx];
 
       // set green pixel to the pixel below this one
-      let belowIndex = (i + 1 + img.width*4) % img.pixels.length;
-      img.pixels[i+1] = img.pixels[belowIndex];
+      let downIdx = (i + 1 + img.width*4) % img.pixels.length;
+      img.pixels[i+1] = img.pixels[downIdx];
     }
 
     img.updatePixels();
