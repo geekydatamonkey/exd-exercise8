@@ -13,15 +13,24 @@ const pixelDensity = window.devicePixelRatio || 1;
 */
 function sketch(s) {
 
+  let $canvas = $('.canvas-wrapper');
   let img;
+  let scaledImg;
+  let scaleFactor;
 
   s.preload = function() {
     img = s.loadImage('images/ziti_600x450.jpg');
   };
 
   s.setup = function() {
-    let canvas = s.createCanvas(600, 450);
-    canvas.parent($('.canvas-wrapper')[0]);
+    let canvas = s.createCanvas($canvas.innerWidth(), $canvas.innerHeight());
+    canvas.parent($canvas[0]);
+
+    // create a buffer for storing the scaled image
+    scaleFactor = s.width / img.width;
+    scaledImg = s.createGraphics(scaleFactor * img.width, scaleFactor * img.height);
+
+    // load pixels
     img.loadPixels();
   };
 
@@ -42,7 +51,11 @@ function sketch(s) {
 
     img.updatePixels();
 
-    s.image(img, 0, 0);
+    // resize for drawing
+    // don't resize the real img so that we have fewer pixels
+    scaledImg.copy(img, 0,0,img.width, img.height, 0, 0, scaleFactor * img.width, scaleFactor * img.height);
+
+    s.image(scaledImg, 0, 0);
 
   };
 
