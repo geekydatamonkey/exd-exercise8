@@ -6,6 +6,8 @@ import $ from 'jquery';
 //import _ from 'lodash';
 import p5 from 'p5';
 
+const pixelDensity = window.devicePixelRatio || 1;
+
 /**
 * instance of p5 sketch
 */
@@ -32,7 +34,9 @@ function sketch(s) {
       img.pixels[i] = img.pixels[rightIdx];
 
       // set green pixel to the pixel below this one
-      let downIdx = (i + 1 + img.width*4) % img.pixels.length;
+      // not entirely sure why I need to multiply by pixelDensity^2
+      // rather than just pixelDensity
+      let downIdx = (i + 1 + img.width * pixelDensity * pixelDensity) % img.pixels.length;
       img.pixels[i+1] = img.pixels[downIdx];
     }
 
